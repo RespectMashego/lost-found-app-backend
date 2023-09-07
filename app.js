@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGOBD_URI, {
     useUnifiedTopology: true,
 }).then(() => console.log("monogdb connected")).catch((e) => console.log("failed to connect mongodb",e))
 //Routes
-import authRoutes from "./src/routes/authRoutes"
+import authRoutes from "./src/routes/authRoutes.js"
 
 app.use("/auth",authRoutes)
 

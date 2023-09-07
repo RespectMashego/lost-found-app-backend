@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -20,7 +20,7 @@ const register = async (req, res) => {
         })
         await newUser.save()
 
-        res.status(201).json({ message: "user registered sucessfully" })
+        res.status(200).json({ message: "user registered sucessfully" })
 
     }catch(error){
         console.log(error);
