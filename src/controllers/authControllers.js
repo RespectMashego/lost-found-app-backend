@@ -7,10 +7,13 @@ const register = async (req, res) => {
         const { username, email, password } = req.body;
         const existingUser = await User.findOne({ email })
 
+
         if (existingUser) {
+            console.log("user email exists");
             return res.status(400).json({
-                message: "user already exists"
+                message: "user email already exists"
             })
+
         }
         const hashedPassword = await bcrypt.hash(password, 12)
         const newUser = new User({
@@ -19,12 +22,20 @@ const register = async (req, res) => {
             password: hashedPassword
         })
         await newUser.save()
+        const token = jwt.sign({
+            userId: newUser._id, email: newUser.email, username: newUser.username,
+        }, 'respecttaelo',
+            { expiresIn: "1h" }
+        )
+        res.status(201).json({
+            message: "User registered successfully",
+            user: newUser,
+            token
+        });
 
-        res.status(200).json({ message: "user registered sucessfully" })
-
-    }catch(error){
+    } catch (error) {
         console.log(error);
-        res.status(500).json({message:"InternAL server error"})
+        res.status(500).json({ message: "InternAL server error" })
     }
 
 
