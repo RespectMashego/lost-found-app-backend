@@ -11,7 +11,7 @@ const ItemScheme = new mongoose.Schema({
         default: 'found', // Set the default value to 'found'
     },
     images: [{ type: String }],
-    postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 
 
 })

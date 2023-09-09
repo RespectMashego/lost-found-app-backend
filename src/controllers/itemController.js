@@ -29,8 +29,10 @@ const createItem = async (req, res) => {
             location,
             contact,
             images: imageUrls, // Store the array of image URLs
-            postedBy: userId,
+         
         });
+        newItem.postedBy = req.user.userId;
+        console.log("user id",req.user.userId);
 
         await newItem.save();
 
