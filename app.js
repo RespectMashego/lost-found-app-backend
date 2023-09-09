@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv"
 import morgan from "morgan";
 import mongoose from "mongoose";
+import { v2 as cloudinary } from 'cloudinary';
+
+
 
 dotenv.config();
 
@@ -10,6 +13,14 @@ console.log(process.env.MONGOBD_URI);
 
 const app = express()
 
+//cloudinar
+
+cloudinary.config({
+    cloud_name: 'dhge4f7mf',
+    api_key: '214534517966234',
+    api_secret: 'dZxbcDvVTf4u314F44qc4PtzUOg'
+});
+
 //middleware setup
 app.use(express.json())
 app.use(morgan('dev'))
@@ -17,13 +28,15 @@ app.use(morgan('dev'))
 mongoose.connect(process.env.MONGOBD_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-}).then(() => console.log("monogdb connected")).catch((e) => console.log("failed to connect mongodb",e))
+}).then(() => console.log("monogdb connected")).catch((e) => console.log("failed to connect mongodb", e))
 //Routes
 import authRoutes from "./src/routes/authRoutes.js"
+import itemRoutes from "./src/routes/itemRoutes.js"
 
-app.use("/auth",authRoutes)
+app.use('/api', itemRoutes);
+app.use("/auth", authRoutes)
 
-const PORT=process.env.PORT  || 3000
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
     console.log("sever listening to port 3000");
