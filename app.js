@@ -32,11 +32,13 @@ mongoose.connect(process.env.MONGOBD_URI, {
 //Routes
 import authRoutes from "./src/routes/authRoutes.js"
 import itemRoutes from "./src/routes/itemRoutes.js"
-import feedRoutes from './src/routes/feedRoutes.js';
+import feedRoutes from './src/routes/feedRoutes.js'
+import profileRoutes from "./src/routes/profileRoutes.js";
 
 app.use('/api', itemRoutes);
 app.use("/auth", authRoutes)
 app.use('/api/feed', feedRoutes)
+app.use("/user/posted-items", profileRoutes)
 
 const PORT = process.env.PORT || 3000
 
