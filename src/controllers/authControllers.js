@@ -25,7 +25,7 @@ const register = async (req, res) => {
         const token = jwt.sign({
             userId: newUser._id, email: newUser.email, username: newUser.username,
         }, 'respecttaelo',
-            { expiresIn: "1h" }
+            // { expiresIn: "1h" }
         )
         res.status(201).json({
             message: "User registered successfully",

@@ -29,10 +29,10 @@ const createItem = async (req, res) => {
             location,
             contact,
             images: imageUrls, // Store the array of image URLs
-         
+
         });
         newItem.postedBy = req.user.userId;
-        console.log("user id",req.user.userId);
+        console.log("user id", req.user.userId);
 
         await newItem.save();
 
@@ -45,4 +45,38 @@ const createItem = async (req, res) => {
     }
 };
 
-export default { createItem };
+const deleteItem = async (req, res) => {
+    try {
+        const { itemId } = req.params;
+        console.log("item id", itemId);
+        const userId = req.user.userId;
+        console.log("useid", userId);
+
+        const item = await Item.findByIdAndDelete({ _id: itemId })
+        if ( item.postedBy.toString() !== userId.toString()) {
+            return res.status(403).json({ message: 'You do not have permission to delete this item.' });
+        }
+
+        // If the user is the owner, you can proceed to delete the item
+        console.log("before delete");
+        // await item.deleteOne()
+        console.log("after delete");
+        res.status(200).json({
+            message: "item posted successfully"
+        })
+
+
+
+
+    } catch (error) {
+
+
+    }
+
+
+
+
+}
+
+export default { createItem, deleteItem };
+
