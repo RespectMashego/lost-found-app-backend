@@ -4,6 +4,7 @@ export const authenticateUser = (req, res, next) => {
   const authHeader = req.header('Authorization');
 
   if (!authHeader) {
+    console.log('Authentication failed. Token not provided');
     return res.status(401).json({ message: 'Authentication failed. Token not provided' });
   }
 

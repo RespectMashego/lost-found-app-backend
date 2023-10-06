@@ -1,12 +1,14 @@
-import express from "express"
-import authControllers from "../controllers/authControllers.js"
+import express from "express";
+import authControllers from "../controllers/authControllers.js";
 
+const router = express.Router();
 
-const router=express.Router()
+router.post("/register", authControllers.register);
+router.post("/login", authControllers.login);
+router.post("/logout", authControllers.logout);
+router.get(
+  "/confirm-email/:confirmationToken",
+  authControllers.emailConfirmation
+);
 
-
-router.post("/register",authControllers.register)
-router.post("/login",authControllers.login)
-router.post("/logout",authControllers.logout)
-
-export default router
+export default router;

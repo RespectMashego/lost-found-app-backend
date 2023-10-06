@@ -8,10 +8,12 @@ const getUserPostedItems = async (req, res) => {
         const userPostedItems = await Item.find({ postedBy: userId }).sort({ createdAt: -1 }) // Sort by createdAt in descending order (latest first)
             .exec();
         console.log(userPostedItems);
-        res.status(200).json({ userPostedItems })
-        if (userPostedItems.length === 0) {
-            res.status(200).json({ userPostedItems,message:"You have posted items yet" })
 
+        if (userPostedItems.length === 0) {
+            res.status(201).json({ userPostedItems,message:"You have not posted items yet" })
+
+        }else{
+            res.status(200).json({ userPostedItems,message:"he are your items you have posted" })
         }
 
     }
