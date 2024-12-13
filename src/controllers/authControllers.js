@@ -29,13 +29,13 @@ const register = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "r.mashego333@gmail.com", // Replace with your Gmail email address
-        pass: "xihv ojpg jksv iazi", // Replace with your Gmail password
+        user: "", // Replace with your Gmail email address
+        pass: "", // Replace with your Gmail password
       },
     });
 
     const mailOptions = {
-      from: "r.mashego333@gmail.com",
+      from: "",
       to: email,
       subject: "Email Confirmation for Lost and Found App",
       text: `Click the following link to confirm your email: http://192.168.190.44:${port}/auth/confirm-email/${confirmationToken}`,
