@@ -4,9 +4,9 @@ import cloudinary from 'cloudinary';
 // Configure Cloudinary
 
 cloudinary.config({
-    cloud_name: 'dhge4f7mf',
-    api_key: '214534517966234',
-    api_secret: 'dZxbcDvVTf4u314F44qc4PtzUOg'
+    cloud_name: '',
+    api_key: '',
+    api_secret: ''
 });
 
 const createItem = async (req, res) => {
